@@ -1,4 +1,7 @@
-
+leftwristX=0;
+leftwristY=0;
+rightwristX=0;
+rightwristY=0;
 /*created by prashant shukla */
 
 var paddle2 =10,paddle1=10;
@@ -54,7 +57,33 @@ image(video,0,0,700,600);
     strokeWeight(0.5);
    paddle1Y = mouseY; 
    rect(paddle1X,paddle1Y,paddle1,paddle1Height,100);
+   fill("#d90000");
+   stroke("#d90000");
+   if(scorerightwrist>0.2){
+
    
+   circle(rightwristX,rightwristY,20);
+   if(rightwristY>0 &&rightwristY<=100){
+     document.getElementById("speed").innerHTML="Speed=0.5x";
+     song.rate(0.5);
+   }
+   else if(rightwristY>100 &&rightwristY<=200){
+   document.getElementById("speed").innerHTML="Speed=1x";
+   song.rate(1); 
+   }
+   else if(rightwristY>200 &&rightwristY<=300){
+       document.getElementById("speed").innerHTML="Speed=1.5x";
+       song.rate(1.5); 
+       }
+       else if(rightwristY>300 &&rightwristY<=400){
+           document.getElementById("speed").innerHTML="Speed=2x";
+           song.rate(2); 
+           }
+           else if(rightwristY>400){
+               document.getElementById("speed").innerHTML="Speed=2.5x";
+               song.rate(2.5); 
+               }
+           }
    
     //pc computer paddle
     fill("#FFA500");
@@ -74,8 +103,16 @@ image(video,0,0,700,600);
     move();
 }
 
+function gotResult(error,results){
+  if(error){
+      console.log(error);
+  }
+  else{
+      console.log(results);
+      objects=results;
+  }
 
-
+}
 //function reset when ball does notcame in the contact of padde
 function reset(){
    ball.x = width/2+100,
